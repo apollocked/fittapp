@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/Custom_Widgets/custom_banner.dart';
-import 'package:myapp/Custom_Widgets/custom_button.dart';
+import 'package:myapp/pages/Ideal_bodyweight_page/ideal_bw_page.dart';
+import 'package:myapp/pages/Protien_intake_page/protien_intake_page.dart';
 import 'package:myapp/utils/colors.dart';
 
-class StartPage extends StatelessWidget {
+class StartPage extends StatefulWidget {
   const StartPage({super.key});
 
+  @override
+  State<StartPage> createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,14 +61,51 @@ class StartPage extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    CustomButton(
-                        onPressed: () {}, text: "My ideal body weight"),
+                    SizedBox(
+                      height: 80,
+                      width: 255,
+                      child: FloatingActionButton(
+                        heroTag: "ideal body weight",
+                        isExtended: true,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const IdealBodyWeightPage();
+                          }));
+                        },
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        child: const Text(
+                          "ideal body weight",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ),
                     const SizedBox(
                       height: 15,
                     ),
-                    CustomButton(
-                        onPressed: () {},
-                        text: "How much protien should i eat ??"),
+                    SizedBox(
+                      height: 80,
+                      width: 255,
+                      child: FloatingActionButton(
+                        heroTag: "protien intake",
+                        isExtended: true,
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const ProtienIntakePage();
+                          }));
+                        },
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        child: const Text(
+                          "Daily protien intake ",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    ),
                     const SizedBox(
                       height: 15,
                     ),
