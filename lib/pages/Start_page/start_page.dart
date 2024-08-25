@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/Custom_Widgets/custom_banner.dart';
 import 'package:myapp/pages/Ideal_bodyweight_page/ideal_bw_page.dart';
 import 'package:myapp/pages/Protien_intake_page/protien_intake_page.dart';
+import 'package:myapp/utils/assets.dart';
 import 'package:myapp/utils/colors.dart';
 
 class StartPage extends StatefulWidget {
@@ -25,10 +26,13 @@ class _StartPageState extends State<StartPage> {
               children: [
                 Column(
                   children: [
-                    Text(
-                      "apollo is design the app ....",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(color: primaryColor),
+                    SizedBox(
+                      width: 400,
+                      height: 230,
+                      child: Image.asset(
+                        fit: BoxFit.fitWidth,
+                        banner,
+                      ),
                     ),
                     const SizedBox(
                       height: 25,
@@ -59,11 +63,11 @@ class _StartPageState extends State<StartPage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 15,
+                      height: 35,
                     ),
                     SizedBox(
-                      height: 80,
-                      width: 255,
+                      height: 40,
+                      width: 200,
                       child: FloatingActionButton(
                         heroTag: "ideal body weight",
                         isExtended: true,
@@ -73,21 +77,21 @@ class _StartPageState extends State<StartPage> {
                             return const IdealBodyWeightPage();
                           }));
                         },
-                        backgroundColor: primaryColor,
+                        backgroundColor: secondColor,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        child: const Text(
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Text(
                           "ideal body weight",
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 16, color: primaryColor),
                         ),
                       ),
                     ),
                     const SizedBox(
-                      height: 15,
+                      height: 25,
                     ),
                     SizedBox(
-                      height: 80,
-                      width: 255,
+                      height: 40,
+                      width: 200,
                       child: FloatingActionButton(
                         heroTag: "protien intake",
                         isExtended: true,
@@ -97,12 +101,12 @@ class _StartPageState extends State<StartPage> {
                             return const ProtienIntakePage();
                           }));
                         },
-                        backgroundColor: primaryColor,
+                        backgroundColor: secondColor,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8)),
-                        child: const Text(
+                        child: Text(
                           "Daily protien intake ",
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 16, color: primaryColor),
                         ),
                       ),
                     ),
