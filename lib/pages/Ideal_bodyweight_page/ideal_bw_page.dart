@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:myapp/Custom_Widgets/custom_banner.dart';
 import 'package:myapp/utils/colors.dart';
 
@@ -47,9 +48,8 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                         value: 'Male',
                         groupValue: gender,
                         onChanged: (value) {
-                          gender = value!;
                           setState(() {
-                            isMale = true;
+                            gender = value!;
                           });
                         },
                       ),
@@ -64,7 +64,6 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                         onChanged: (value) {
                           setState(() {
                             gender = value!;
-                            isMale = false;
                           });
                         },
                       ),
@@ -73,7 +72,7 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       ),
                       TextFormField(
                         validator: (value) {
-                          if (value == null) {
+                          if (value == null || value.isEmpty) {
                             return "enter your height please";
                           }
                           return null;
@@ -82,8 +81,13 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                           heightInCentimeters = double.parse(value!);
                         },
                         keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'^\d*\.?\d*')) // Only allow digits
+                        ],
                         style: TextStyle(color: primaryColor),
                         decoration: InputDecoration(
+                          errorStyle: const TextStyle(fontSize: 15),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 style: BorderStyle.solid,
@@ -112,21 +116,26 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       ),
                       TextFormField(
                         validator: (value) {
-                          if (value == null) {
+                          if (value == null || value.isEmpty) {
                             return "enter your weight please";
                           }
                           return null;
                         },
                         onSaved: (value) {
-                          isMale
+                          gender == "Male"
                               ? idealBodyWeight =
                                   50 + (0.91 * (heightInCentimeters - 152.4))
                               : idealBodyWeight =
                                   45.5 + (0.91 * (heightInCentimeters - 152.4));
                         },
                         keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.allow(
+                              RegExp(r'^\d*\.?\d*'))
+                        ],
                         style: TextStyle(color: primaryColor),
                         decoration: InputDecoration(
+                          errorStyle: const TextStyle(fontSize: 15),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: secondColor,
@@ -163,14 +172,25 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                               minimumSize: const Size(70, 35)),
                           onPressed: () {
                             setState(() {
-                              form1.currentState!.validate();
-                              form1.currentState!.save();
+                              form1.currentState?.validate();
+                              form1.currentState?.save();
+                              idealBodyWeight =
+                                  (idealBodyWeight * 100).round() / 100;
                             });
                           },
                           child: Text(
                             "OK",
                             style: TextStyle(color: secondColor),
-                          ))
+                          )),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      idealBodyWeight != 0.0
+                          ? Text(
+                              " your ideal body weight is $idealBodyWeight kg",
+                              style: TextStyle(color: secondColor),
+                            )
+                          : Container()
                     ],
                   ),
                 )
