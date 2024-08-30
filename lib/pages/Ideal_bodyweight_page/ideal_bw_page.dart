@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/Custom_Widgets/custom_banner.dart';
+import 'package:myapp/Custom_Widgets/weight_diffrence.dart';
 import 'package:myapp/utils/colors.dart';
 
 class IdealBodyWeightPage extends StatefulWidget {
@@ -14,6 +15,7 @@ GlobalKey<FormState> form1 = GlobalKey<FormState>();
 String gender = "Male";
 bool isMale = false;
 double idealBodyWeight = 0.0;
+double currentBodyWeight = 0.0;
 double heightInCentimeters = 0.0;
 
 class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
@@ -28,10 +30,6 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
-                  "you are in Ideal body weight calculator page ",
-                  style: TextStyle(color: primaryColor),
-                ),
                 Form(
                   key: form1,
                   child: Column(
@@ -39,8 +37,8 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Text('whats your gender',
-                          style: TextStyle(color: secondColor)),
+                      Text('Select Your Gender',
+                          style: TextStyle(color: secondColor, fontSize: 16)),
                       RadioListTile<String>(
                         fillColor: WidgetStatePropertyAll(secondColor),
                         title:
@@ -73,7 +71,7 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "enter your height please";
+                            return "Enter your height please";
                           }
                           return null;
                         },
@@ -117,11 +115,13 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "enter your weight please";
+                            return "Enter your weight please";
                           }
                           return null;
                         },
                         onSaved: (value) {
+                          currentBodyWeight = double.parse(value!);
+
                           gender == "Male"
                               ? idealBodyWeight =
                                   50 + (0.91 * (heightInCentimeters - 152.4))
@@ -182,15 +182,25 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                             "OK",
                             style: TextStyle(color: secondColor),
                           )),
-                      SizedBox(
-                        height: 15,
+                      const SizedBox(
+                        height: 35,
                       ),
                       idealBodyWeight != 0.0
                           ? Text(
-                              " your ideal body weight is $idealBodyWeight kg",
-                              style: TextStyle(color: secondColor),
+                              " Your Ideal Body Weight is $idealBodyWeight KG",
+                              style:
+                                  TextStyle(color: primaryColor, fontSize: 16),
                             )
-                          : Container()
+                          : Container(),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Center(
+                        child: Text(
+                          diffrence(currentBodyWeight, idealBodyWeight),
+                          style: TextStyle(color: primaryColor, fontSize: 16),
+                        ),
+                      )
                     ],
                   ),
                 )

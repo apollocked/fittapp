@@ -6,8 +6,8 @@ AppBar customAppBarr = AppBar(
   title: Text(
     "Fitness Mesurment App",
     style: TextStyle(
-      fontSize: 18,
-      color: secondColor,
+      fontSize: 19,
+      color: thirdcColor,
     ),
   ),
 );
