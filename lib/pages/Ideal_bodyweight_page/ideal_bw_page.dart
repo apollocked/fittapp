@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/Custom_Widgets/custom_banner.dart';
+import 'package:myapp/Custom_Widgets/select_gender_radio.dart';
 import 'package:myapp/Custom_Widgets/weight_diffrence.dart';
 import 'package:myapp/utils/colors.dart';
 
@@ -12,7 +13,6 @@ class IdealBodyWeightPage extends StatefulWidget {
 }
 
 GlobalKey<FormState> form1 = GlobalKey<FormState>();
-String gender = "Male";
 bool isMale = false;
 double idealBodyWeight = 0.0;
 double currentBodyWeight = 0.0;
@@ -39,32 +39,7 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       ),
                       Text('Select Your Gender',
                           style: TextStyle(color: secondColor, fontSize: 16)),
-                      RadioListTile<String>(
-                        fillColor: WidgetStatePropertyAll(secondColor),
-                        title:
-                            Text('Male', style: TextStyle(color: primaryColor)),
-                        value: 'Male',
-                        groupValue: gender,
-                        onChanged: (value) {
-                          setState(() {
-                            gender = value!;
-                          });
-                        },
-                      ),
-                      RadioListTile<String>(
-                        fillColor: WidgetStatePropertyAll(secondColor),
-                        title: Text(
-                          'Female',
-                          style: TextStyle(color: primaryColor),
-                        ),
-                        value: 'Female',
-                        groupValue: gender,
-                        onChanged: (value) {
-                          setState(() {
-                            gender = value!;
-                          });
-                        },
-                      ),
+                      const SelectGenderRadio(),
                       const SizedBox(
                         height: 15,
                       ),
