@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/Custom_Widgets/custom_banner.dart';
+import 'package:myapp/Custom_Widgets/custom_textfeild.dart';
 import 'package:myapp/Custom_Widgets/select_gender_radio.dart';
 import 'package:myapp/Custom_Widgets/weight_diffrence.dart';
 import 'package:myapp/utils/colors.dart';
@@ -48,46 +49,19 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       const SizedBox(
                         height: 15,
                       ),
-                      TextFormField(
+                      CustomTextfeild(
+                        hintText: "Enter your Height in CM",
+                        keyType: "keyType",
+                        onSaved: (value) {
+                          user["height"] = double.parse(value!);
+                        },
+                        text: "Height ",
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Enter your height please";
                           }
                           return null;
                         },
-                        onSaved: (value) {
-                          user["height"] = double.parse(value!);
-                        },
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.allow(
-                              RegExp(r'^\d*\.?\d*')) // Only allow digits
-                        ],
-                        style: TextStyle(color: primaryColor),
-                        decoration: InputDecoration(
-                          errorStyle: const TextStyle(fontSize: 15),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                style: BorderStyle.solid,
-                                color: secondColor,
-                                width: 2),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          hintText: "Enter your Height in CM",
-                          hintStyle: TextStyle(color: greyColor),
-                          enabled: true,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: secondColor,
-                                style: BorderStyle.solid,
-                                width: 1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          label: Text(
-                            "Height ",
-                            style: TextStyle(color: secondColor),
-                          ),
-                        ),
                       ),
                       const SizedBox(
                         height: 15,
