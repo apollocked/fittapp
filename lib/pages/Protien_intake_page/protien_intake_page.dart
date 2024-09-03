@@ -3,6 +3,7 @@ import 'package:myapp/Custom_Widgets/custom_banner.dart';
 import 'package:myapp/Custom_Widgets/custom_elevated_button.dart';
 import 'package:myapp/Custom_Widgets/custom_textfeild.dart';
 import 'package:myapp/Custom_Widgets/select_gender_radio.dart';
+import 'package:myapp/Custom_Widgets/select_workout_type.dart';
 import 'package:myapp/Custom_Widgets/weight_diffrence.dart';
 import 'package:myapp/pages/Ideal_bodyweight_page/ideal_bw_page.dart';
 import 'package:myapp/utils/colors.dart';
@@ -38,10 +39,7 @@ class _ProtienIntakePageState extends State<ProtienIntakePage> {
                       ),
                       Text('Are You a BodyBuilder ?',
                           style: TextStyle(color: secondColor, fontSize: 16)),
-                      const CustomGenderRatio(
-                        value2: "Yes",
-                        value1: 'No',
-                      ),
+                      const CustomBodyTypeRatio(),
                       const SizedBox(
                         height: 15,
                       ),

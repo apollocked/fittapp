@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/pages/Ideal_bodyweight_page/ideal_bw_page.dart';
 import 'package:myapp/pages/Protien_intake_page/protien_intake_page.dart';
 
 void main() {

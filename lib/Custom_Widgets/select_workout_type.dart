@@ -2,42 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:myapp/utils/colors.dart';
 import 'package:myapp/utils/data.dart';
 
-class CustomGenderRatio extends StatefulWidget {
-  const CustomGenderRatio({
+class CustomBodyTypeRatio extends StatefulWidget {
+  const CustomBodyTypeRatio({
     super.key,
   });
 
   @override
-  State<CustomGenderRatio> createState() => _CustomRatioState();
+  State<CustomBodyTypeRatio> createState() => _CustomBodyTypeRatio();
 }
 
-class _CustomRatioState extends State<CustomGenderRatio> {
+class _CustomBodyTypeRatio extends State<CustomBodyTypeRatio> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         RadioListTile<String>(
           fillColor: WidgetStatePropertyAll(secondColor),
-          title: Text("Male", style: TextStyle(color: primaryColor)),
-          value: "Male",
-          groupValue: user["gender"],
+          title: Text("No", style: TextStyle(color: primaryColor)),
+          value: false.toString(),
+          groupValue: user["isBodybuilder"].toString(),
           onChanged: (value) {
             setState(() {
-              user["gender"] = "Male";
+              user["isBodybuilder"] = value;
             });
           },
         ),
         RadioListTile<String>(
           fillColor: WidgetStatePropertyAll(secondColor),
           title: Text(
-           "Female",
+            "Yes",
             style: TextStyle(color: primaryColor),
           ),
-          value: "Female",
-          groupValue: user["gender"],
+          value: true.toString(),
+          groupValue: user["isBodybuilder"].toString(),
           onChanged: (value) {
             setState(() {
-              user["gender"] = "Female";
+              user["isBodybuilder"] = value;
             });
           },
         ),
