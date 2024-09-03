@@ -23,7 +23,7 @@ class _CustomBodyTypeRatio extends State<CustomBodyTypeRatio> {
           groupValue: user["isBodybuilder"].toString(),
           onChanged: (value) {
             setState(() {
-              user["isBodybuilder"] = value;
+              user["isBodybuilder"] = false;
             });
           },
         ),
@@ -37,7 +37,7 @@ class _CustomBodyTypeRatio extends State<CustomBodyTypeRatio> {
           groupValue: user["isBodybuilder"].toString(),
           onChanged: (value) {
             setState(() {
-              user["isBodybuilder"] = value;
+              user["isBodybuilder"] = true;
             });
           },
         ),

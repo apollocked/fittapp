@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/Custom_Widgets/custom_banner.dart';
 import 'package:myapp/Custom_Widgets/custom_elevated_button.dart';
 import 'package:myapp/Custom_Widgets/custom_textfeild.dart';
-import 'package:myapp/Custom_Widgets/select_gender_radio.dart';
 import 'package:myapp/Custom_Widgets/select_workout_type.dart';
-import 'package:myapp/Custom_Widgets/weight_diffrence.dart';
 import 'package:myapp/pages/Ideal_bodyweight_page/ideal_bw_page.dart';
 import 'package:myapp/utils/colors.dart';
 import 'package:myapp/utils/data.dart';
@@ -17,6 +15,9 @@ class ProtienIntakePage extends StatefulWidget {
 }
 
 GlobalKey<FormState> form2 = GlobalKey<FormState>();
+double loweistProtienIntake = 0.0;
+double highistProtienIntake = 0.0;
+double normalProteinIntake = 0.0;
 
 class _ProtienIntakePageState extends State<ProtienIntakePage> {
   @override
@@ -47,11 +48,13 @@ class _ProtienIntakePageState extends State<ProtienIntakePage> {
                           hintText: "Enter your Weight in KG",
                           onSaved: (value) {
                             user["weight"] = double.parse(value!);
-                            user["gender"] == "Male"
-                                ? idealBodyWeight =
-                                    50 + (0.91 * (user["height"] - 152.4))
-                                : idealBodyWeight =
-                                    45.5 + (0.91 * (user["height"] - 152.4));
+                            if (user["isBodybuilder"] == false) {
+                              normalProteinIntake = 0.8 * user["weight"];
+                            } else {
+                              highistProtienIntake = 2.0 * user["weight"];
+
+                              loweistProtienIntake = 1.2 * user["weight"];
+                            }
                           },
                           text: "Weight ",
                           validator: (value) {
@@ -66,35 +69,54 @@ class _ProtienIntakePageState extends State<ProtienIntakePage> {
                       CustomElevatedButton(
                           onpressed: () {
                             setState(() {
-                              form1.currentState?.validate();
-                              form1.currentState?.save();
-                              idealBodyWeight =
-                                  (idealBodyWeight * 100).round() / 100;
+                              form2.currentState?.validate();
+                              form2.currentState?.save();
+                              normalProteinIntake =
+                                  (normalProteinIntake * 100).round() / 100;
+                              highistProtienIntake =
+                                  (highistProtienIntake * 100).round() / 100;
+                              loweistProtienIntake =
+                                  (loweistProtienIntake * 100).round() / 100;
                             });
                           },
                           text: "OK"),
                       const SizedBox(
                         height: 35,
                       ),
-                      idealBodyWeight != 0.0
-                          ? Text(
-                              " Your Ideal Body Weight is $idealBodyWeight KG",
-                              style:
-                                  TextStyle(color: primaryColor, fontSize: 16),
-                            )
-                          : Container(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Center(
-                        child: Text(
-                          diffrence(user["weight"], idealBodyWeight),
-                          style: TextStyle(color: primaryColor, fontSize: 16),
-                        ),
-                      )
                     ],
                   ),
-                )
+                ),
+                normalProteinIntake +
+                            highistProtienIntake +
+                            loweistProtienIntake !=
+                        0.0
+                    ? user["isBodybuilder"] == true
+                        ? Center(
+                            child: Column(
+                              children: [
+                                Text(
+                                  " You Must Eat Between",
+                                  style: TextStyle(
+                                      color: primaryColor, fontSize: 16),
+                                ),
+                                Text(
+                                  "$loweistProtienIntake To $highistProtienIntake",
+                                  style: TextStyle(
+                                      color: primaryColor, fontSize: 14),
+                                ),
+                                Text(
+                                  "Grams Daily",
+                                  style: TextStyle(
+                                      color: primaryColor, fontSize: 16),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Text(
+                            " You Must eat $normalProteinIntake Grams of Protien Daily !",
+                            style: TextStyle(color: primaryColor, fontSize: 16),
+                          )
+                    : Container(),
               ],
             ),
           ),
