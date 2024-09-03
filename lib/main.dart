@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/pages/Ideal_bodyweight_page/ideal_bw_page.dart';
 import 'package:myapp/pages/Protien_intake_page/protien_intake_page.dart';
 
 void main() {
@@ -13,6 +14,6 @@ class FitApp extends StatelessWidget {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "fitness mesurment app",
-        home: SafeArea(child: ProtienIntakePage()));
+        home: SafeArea(child: IdealBodyWeightPage()));
   }
 }

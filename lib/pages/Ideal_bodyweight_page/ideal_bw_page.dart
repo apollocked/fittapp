@@ -4,6 +4,7 @@ import 'package:myapp/Custom_Widgets/custom_banner.dart';
 import 'package:myapp/Custom_Widgets/select_gender_radio.dart';
 import 'package:myapp/Custom_Widgets/weight_diffrence.dart';
 import 'package:myapp/utils/colors.dart';
+import 'package:myapp/utils/data.dart';
 
 class IdealBodyWeightPage extends StatefulWidget {
   const IdealBodyWeightPage({super.key});
@@ -17,6 +18,7 @@ bool isMale = false;
 double idealBodyWeight = 0.0;
 double currentBodyWeight = 0.0;
 double heightInCentimeters = 0.0;
+String gender = "Male";
 
 class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
   @override
@@ -39,7 +41,11 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       ),
                       Text('Select Your Gender',
                           style: TextStyle(color: secondColor, fontSize: 16)),
-                      const SelectGenderRadio(),
+                      CustomRatio(
+                        value2: "Female",
+                        value1: 'Male',
+                        vargroup: user["gender"],
+                      ),
                       const SizedBox(
                         height: 15,
                       ),
@@ -51,7 +57,7 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                           return null;
                         },
                         onSaved: (value) {
-                          heightInCentimeters = double.parse(value!);
+                          user["height"] = double.parse(value!);
                         },
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
@@ -95,13 +101,12 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                           return null;
                         },
                         onSaved: (value) {
-                          currentBodyWeight = double.parse(value!);
-
-                          gender == "Male"
+                          user["weight"] = double.parse(value!);
+                          user["gender"] == "Male"
                               ? idealBodyWeight =
-                                  50 + (0.91 * (heightInCentimeters - 152.4))
+                                  50 + (0.91 * (user["height"] - 152.4))
                               : idealBodyWeight =
-                                  45.5 + (0.91 * (heightInCentimeters - 152.4));
+                                  45.5 + (0.91 * (user["height"] - 152.4));
                         },
                         keyboardType: TextInputType.number,
                         inputFormatters: <TextInputFormatter>[
@@ -172,7 +177,7 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       ),
                       Center(
                         child: Text(
-                          diffrence(currentBodyWeight, idealBodyWeight),
+                          diffrence(user["weight"], idealBodyWeight),
                           style: TextStyle(color: primaryColor, fontSize: 16),
                         ),
                       )
