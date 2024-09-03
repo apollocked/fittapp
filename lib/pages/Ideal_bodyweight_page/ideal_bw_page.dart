@@ -15,7 +15,7 @@ class IdealBodyWeightPage extends StatefulWidget {
 }
 
 GlobalKey<FormState> form1 = GlobalKey<FormState>();
-bool isMale = false;
+
 double idealBodyWeight = 0.0;
 double currentBodyWeight = 0.0;
 double heightInCentimeters = 0.0;
