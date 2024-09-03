@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/pages/Ideal_bodyweight_page/ideal_bw_page.dart';
 import 'package:myapp/utils/colors.dart';
 import 'package:myapp/utils/data.dart';
 
-class CustomRatio extends StatefulWidget {
-  CustomRatio(
-      {super.key,
-      required this.value1,
-      required this.value2,
-      required this.vargroup});
+class CustomGenderRatio extends StatefulWidget {
+  const CustomGenderRatio({
+    super.key,
+    required this.value1,
+    required this.value2,
+  });
   final String value1;
   final String value2;
-  String vargroup;
 
   @override
-  State<CustomRatio> createState() => _CustomRatioState();
+  State<CustomGenderRatio> createState() => _CustomRatioState();
 }
 
-class _CustomRatioState extends State<CustomRatio> {
+class _CustomRatioState extends State<CustomGenderRatio> {
   @override
   Widget build(BuildContext context) {
     return Column(

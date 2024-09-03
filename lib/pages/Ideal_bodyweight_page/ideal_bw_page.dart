@@ -41,10 +41,9 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       ),
                       Text('Select Your Gender',
                           style: TextStyle(color: secondColor, fontSize: 16)),
-                      CustomRatio(
+                      const CustomGenderRatio(
                         value2: "Female",
                         value1: 'Male',
-                        vargroup: user["gender"],
                       ),
                       const SizedBox(
                         height: 15,
