@@ -6,24 +6,22 @@ class CustomTextfeild extends StatelessWidget {
   CustomTextfeild(
       {super.key,
       required this.hintText,
-      required this.keyType,
       required this.onSaved,
       required this.text,
       required this.validator});
   dynamic validator;
   dynamic onSaved;
-  dynamic keyType;
   dynamic hintText;
   dynamic text;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value) {
-        validator;
-      },
-      onSaved: (value) {
-        onSaved;
-      },
+      validator: 
+        validator
+      ,
+      onSaved: 
+        onSaved
+      ,
       keyboardType: TextInputType.number,
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*'))

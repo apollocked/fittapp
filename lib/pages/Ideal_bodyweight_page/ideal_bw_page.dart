@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:myapp/Custom_Widgets/custom_banner.dart';
+import 'package:myapp/Custom_Widgets/custom_elevated_button.dart';
 import 'package:myapp/Custom_Widgets/custom_textfeild.dart';
 import 'package:myapp/Custom_Widgets/select_gender_radio.dart';
 import 'package:myapp/Custom_Widgets/weight_diffrence.dart';
@@ -51,7 +51,6 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       ),
                       CustomTextfeild(
                         hintText: "Enter your Height in CM",
-                        keyType: "keyType",
                         onSaved: (value) {
                           user["height"] = double.parse(value!);
                         },
@@ -66,64 +65,28 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       const SizedBox(
                         height: 15,
                       ),
-                      TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Enter your weight please";
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          user["weight"] = double.parse(value!);
-                          user["gender"] == "Male"
-                              ? idealBodyWeight =
-                                  50 + (0.91 * (user["height"] - 152.4))
-                              : idealBodyWeight =
-                                  45.5 + (0.91 * (user["height"] - 152.4));
-                        },
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.allow(
-                              RegExp(r'^\d*\.?\d*'))
-                        ],
-                        style: TextStyle(color: primaryColor),
-                        decoration: InputDecoration(
-                          errorStyle: const TextStyle(fontSize: 15),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: secondColor,
-                                style: BorderStyle.solid,
-                                width: 2),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                      CustomTextfeild(
                           hintText: "Enter your Weight in KG",
-                          hintStyle: TextStyle(color: greyColor),
-                          enabled: true,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: secondColor,
-                                style: BorderStyle.solid,
-                                width: 1),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          label: Text(
-                            "Weight ",
-                            style: TextStyle(color: secondColor),
-                          ),
-                        ),
-                      ),
+                          onSaved: (value) {
+                            user["weight"] = double.parse(value!);
+                            user["gender"] == "Male"
+                                ? idealBodyWeight =
+                                    50 + (0.91 * (user["height"] - 152.4))
+                                : idealBodyWeight =
+                                    45.5 + (0.91 * (user["height"] - 152.4));
+                          },
+                          text: "Weight ",
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Enter your weight please";
+                            }
+                            return null;
+                          }),
                       const SizedBox(
                         height: 15,
                       ),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: backgroundColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                  side: BorderSide(
-                                      color: primaryColor, width: 1)),
-                              minimumSize: const Size(70, 35)),
-                          onPressed: () {
+                      CustomElevatedButton(
+                          onpressed: () {
                             setState(() {
                               form1.currentState?.validate();
                               form1.currentState?.save();
@@ -131,10 +94,7 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                                   (idealBodyWeight * 100).round() / 100;
                             });
                           },
-                          child: Text(
-                            "OK",
-                            style: TextStyle(color: secondColor),
-                          )),
+                          text: "OK"),
                       const SizedBox(
                         height: 35,
                       ),
