@@ -3,7 +3,6 @@ import 'package:myapp/Custom_Widgets/custom_banner.dart';
 import 'package:myapp/Custom_Widgets/custom_elevated_button.dart';
 import 'package:myapp/Custom_Widgets/custom_textfeild.dart';
 import 'package:myapp/Custom_Widgets/select_workout_type.dart';
-import 'package:myapp/pages/Ideal_bodyweight_page/ideal_bw_page.dart';
 import 'package:myapp/utils/colors.dart';
 import 'package:myapp/utils/data.dart';
 
@@ -27,9 +26,10 @@ class _ProtienIntakePageState extends State<ProtienIntakePage> {
         backgroundColor: backgroundColor,
         appBar: customAppBarr,
         body: Padding(
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.all(10),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Form(
                   key: form2,
@@ -91,26 +91,20 @@ class _ProtienIntakePageState extends State<ProtienIntakePage> {
                             loweistProtienIntake !=
                         0.0
                     ? user["isBodybuilder"] == true
-                        ? Center(
-                            child: Column(
-                              children: [
-                                Text(
-                                  " You Must Eat Between",
-                                  style: TextStyle(
-                                      color: primaryColor, fontSize: 16),
-                                ),
-                                Text(
-                                  "$loweistProtienIntake To $highistProtienIntake",
-                                  style: TextStyle(
-                                      color: primaryColor, fontSize: 14),
-                                ),
-                                Text(
-                                  "Grams Daily",
-                                  style: TextStyle(
-                                      color: primaryColor, fontSize: 16),
-                                ),
-                              ],
-                            ),
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "You Must Eat Between",
+                                style: TextStyle(
+                                    color: primaryColor, fontSize: 16),
+                              ),
+                              Text(
+                                "$loweistProtienIntake grams To $highistProtienIntake grams of Protien Daily",
+                                style: TextStyle(
+                                    color: primaryColor, fontSize: 16),
+                              ),
+                            ],
                           )
                         : Text(
                             " You Must eat $normalProteinIntake Grams of Protien Daily !",

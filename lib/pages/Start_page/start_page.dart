@@ -72,6 +72,9 @@ class _StartPageState extends State<StartPage> {
                         heroTag: "ideal body weight",
                         isExtended: true,
                         onPressed: () {
+                          idealBodyWeight = 0.0;
+                          currentBodyWeight = 0.0;
+                          heightInCentimeters = 0.0;
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return const IdealBodyWeightPage();
@@ -96,6 +99,9 @@ class _StartPageState extends State<StartPage> {
                         heroTag: "protien intake",
                         isExtended: true,
                         onPressed: () {
+                          loweistProtienIntake = 0.0;
+                          highistProtienIntake = 0.0;
+                          normalProteinIntake = 0.0;
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return const ProtienIntakePage();

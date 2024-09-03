@@ -50,9 +50,17 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                         hintText: "Enter your Height in CM",
                         onSaved: (value) {
                           user["height"] = double.parse(value!);
+                          user["gender"] == "Male"
+                              ? idealBodyWeight =
+                                  50 + (0.91 * (user["height"] - 152.4))
+                              : idealBodyWeight =
+                                  45.5 + (0.91 * (user["height"] - 152.4));
                         },
                         text: "Height ",
                         validator: (value) {
+                          if (idealBodyWeight < 0) {
+                            return "Enter the correct data please";
+                          }
                           if (value == null || value.isEmpty) {
                             return "Enter your height please";
                           }
@@ -66,14 +74,12 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                           hintText: "Enter your Weight in KG",
                           onSaved: (value) {
                             user["weight"] = double.parse(value!);
-                            user["gender"] == "Male"
-                                ? idealBodyWeight =
-                                    50 + (0.91 * (user["height"] - 152.4))
-                                : idealBodyWeight =
-                                    45.5 + (0.91 * (user["height"] - 152.4));
                           },
                           text: "Weight ",
                           validator: (value) {
+                            if (idealBodyWeight < 0) {
+                              return "Enter the correct data please";
+                            }
                             if (value == null || value.isEmpty) {
                               return "Enter your weight please";
                             }
@@ -95,7 +101,7 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       const SizedBox(
                         height: 35,
                       ),
-                      idealBodyWeight != 0.0
+                      idealBodyWeight > 0.0
                           ? Text(
                               " Your Ideal Body Weight is $idealBodyWeight KG",
                               style:
@@ -105,12 +111,15 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Center(
-                        child: Text(
-                          diffrence(user["weight"], idealBodyWeight),
-                          style: TextStyle(color: primaryColor, fontSize: 16),
-                        ),
-                      )
+                      idealBodyWeight > 0
+                          ? Center(
+                              child: Text(
+                                diffrence(user["weight"], idealBodyWeight),
+                                style: TextStyle(
+                                    color: primaryColor, fontSize: 16),
+                              ),
+                            )
+                          : Container(),
                     ],
                   ),
                 )
