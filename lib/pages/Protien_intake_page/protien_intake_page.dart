@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/Custom_Widgets/custom_banner.dart';
+import 'package:myapp/Custom_Widgets/custom_appbar.dart';
 import 'package:myapp/Custom_Widgets/custom_elevated_button.dart';
 import 'package:myapp/Custom_Widgets/custom_textfeild.dart';
 import 'package:myapp/Custom_Widgets/select_workout_type.dart';
@@ -24,7 +24,7 @@ class _ProtienIntakePageState extends State<ProtienIntakePage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
-        appBar: customAppBarr,
+        appBar: customAppBarr("Protien Intake Calculator"),
         body: Padding(
           padding: const EdgeInsets.all(10),
           child: SingleChildScrollView(

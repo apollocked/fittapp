@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/Custom_Widgets/custom_banner.dart';
+import 'package:myapp/Custom_Widgets/custom_appbar.dart';
 import 'package:myapp/Custom_Widgets/custom_elevated_button.dart';
 import 'package:myapp/Custom_Widgets/custom_textfeild.dart';
 import 'package:myapp/Custom_Widgets/select_gender_radio.dart';
 import 'package:myapp/Custom_Widgets/weight_diffrence.dart';
+import 'package:myapp/utils/assets.dart';
 import 'package:myapp/utils/colors.dart';
 import 'package:myapp/utils/data.dart';
 
@@ -27,12 +28,20 @@ class _IdealBodyWeightPageState extends State<IdealBodyWeightPage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
-        appBar: customAppBarr,
+        appBar: customAppBarr("Ideal Body Weight Calculator"),
         body: Padding(
           padding: const EdgeInsets.all(5),
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(
+                  width: 400,
+                  height: 230,
+                  child: Image.asset(
+                    fit: BoxFit.fitWidth,
+                    weightBanner,
+                  ),
+                ),
                 Form(
                   key: form1,
                   child: Column(

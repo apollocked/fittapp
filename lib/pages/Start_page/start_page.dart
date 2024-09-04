@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/Custom_Widgets/custom_banner.dart';
+import 'package:myapp/Custom_Widgets/custom_appbar.dart';
 import 'package:myapp/pages/Ideal_bodyweight_page/ideal_bw_page.dart';
 import 'package:myapp/pages/Protien_intake_page/protien_intake_page.dart';
 import 'package:myapp/utils/assets.dart';
@@ -16,7 +16,7 @@ class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBarr,
+      appBar: customAppBarr( "Fitness Mesurment App" ),
       backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Padding(
@@ -31,7 +31,7 @@ class _StartPageState extends State<StartPage> {
                       height: 230,
                       child: Image.asset(
                         fit: BoxFit.fitWidth,
-                        banner,
+                        startBanner,
                       ),
                     ),
                     const SizedBox(
