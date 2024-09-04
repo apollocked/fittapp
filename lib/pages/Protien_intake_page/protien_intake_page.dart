@@ -3,6 +3,7 @@ import 'package:myapp/Custom_Widgets/custom_appbar.dart';
 import 'package:myapp/Custom_Widgets/custom_elevated_button.dart';
 import 'package:myapp/Custom_Widgets/custom_textfeild.dart';
 import 'package:myapp/Custom_Widgets/select_workout_type.dart';
+import 'package:myapp/utils/assets.dart';
 import 'package:myapp/utils/colors.dart';
 import 'package:myapp/utils/data.dart';
 
@@ -26,11 +27,19 @@ class _ProtienIntakePageState extends State<ProtienIntakePage> {
         backgroundColor: backgroundColor,
         appBar: customAppBarr("Protien Intake Calculator"),
         body: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(5),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  width: 400,
+                  height: 230,
+                  child: Image.asset(
+                    fit: BoxFit.fitHeight,
+                    protienBanner,
+                  ),
+                ),
                 Form(
                   key: form2,
                   child: Column(
